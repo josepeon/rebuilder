@@ -21,3 +21,6 @@ if __name__ == "__main__":
     explanation = test_gpt(prompt)
     print("\nGPT Response:\n")
     print(explanation)
+
+    # Change API next
+    
