@@ -39,9 +39,9 @@ if __name__ == "__main__":
 
     chunks = chunk_text(content)
     for i, chunk in enumerate(chunks):
-    print(f"\n--- Original Chunk {i+1} ---\n")
-    print(chunk)
-    
-    print(f"\n--- Explanation {i+1} ---\n")
-    explanation = explain_chunk(chunk)
-    print(explanation)
+        print(f"\n--- Original Chunk {i+1} ---\n")
+        print(chunk)
+        
+        print(f"\n--- Explanation {i+1} ---\n")
+        explanation = explain_chunk(chunk)
+        print(explanation)
