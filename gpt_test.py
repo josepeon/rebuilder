@@ -1,26 +1,23 @@
-from openai import OpenAI
-from dotenv import load_dotenv
+import requests
 import os
+from dotenv import load_dotenv
 
-# Load the .env file to access the API key
 load_dotenv()
+api_key = os.getenv("TOGETHER_API_KEY")
 
-# Create OpenAI client
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-
-def test_gpt(prompt):
-    response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=[{"role": "user", "content": prompt}],
-        temperature=0
+def query_together(prompt):
+    response = requests.post(
+        "https://api.together.xyz/v1/chat/completions",
+        headers={"Authorization": f"Bearer {api_key}"},
+        json={
+            "model": "mistralai/Mixtral-8x7B-Instruct-v0.1",
+            "messages": [{"role": "user", "content": prompt}],
+            "temperature": 0.7,
+        },
     )
-    return response.choices[0].message.content
+    return response.json()["choices"][0]["message"]["content"]
 
 if __name__ == "__main__":
-    prompt = "Explain briefly what Python decorators do."
-    explanation = test_gpt(prompt)
-    print("\nGPT Response:\n")
-    print(explanation)
-
-    # Change API next
-    
+    prompt = "Explain what Python decorators are in plain English."
+    print("\nRebuilder Response:\n")
+    print(query_together(prompt))
