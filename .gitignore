@@ -19,4 +19,4 @@ __pycache__/
 rebuilder_output.md
 
 # Logs
-*.log
+*.log.DS_Store
